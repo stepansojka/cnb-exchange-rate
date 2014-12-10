@@ -18,12 +18,14 @@ def quarter_average(currency, year, quarter):
         raise ValueError('year %s not found' % year)
 
     try:
-        rate_str = line.split(DELIMITER)[quarter]
+        rate_str = line.split(DELIMITER)[quarter].replace(',', '.')
     except IndexError:
         raise ValueError('quarter %s not found' % quarter)
     
-    rate = float(rate_str.replace(',', '.'))
-    return rate
+    if len(rate_str) > 0:
+        return float(rate_str)
+    else:
+        raise ValueError('year %s not found' % year)
 
 if __name__ == '__main__':
     currency = sys.argv[1]
