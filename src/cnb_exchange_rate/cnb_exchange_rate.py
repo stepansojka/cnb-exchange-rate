@@ -32,7 +32,7 @@ def average_rates(currency, table_index):
 
     return rate_table
 
-def quarter_average(currency, year, quarter):
+def quarterly_average(currency, year, quarter):
     rate_table = average_rates(currency, QUARTERLY_AVERAGE_TABLE_IDX)
 
     try:
