@@ -35,3 +35,30 @@ def test_quarterly_with_invalid_currency():
 def test_monthly_with_existing_SGD():
     assert 13.114 == cnb.monthly_average('SGD', 2010, 1)
 
+def test_monthly_with_existing_AUD():
+    assert 15.736 == cnb.monthly_average('AUD', 2007, 12)
+
+def test_monthly_with_invalid_currency():
+    with pytest.raises(ValueError) as e:
+        cnb.monthly_average('WTF', 2009, 2)
+
+    assert 'not found' in str(e.value)
+
+def test_montly_with_year_with_no_data():
+    with pytest.raises(ValueError) as e:
+        cnb.monthly_average('EUR', 1991, 1)
+
+    assert 'not found' in str(e.value)
+
+def test_monthly_with_unexpected_year():
+    with pytest.raises(ValueError) as e:
+        cnb.monthly_average('EUR', 1492, 1)
+
+    assert 'not found' in str(e.value)
+
+def test_monthly_with_invalid_month():
+    with pytest.raises(ValueError) as e:
+        cnb.monthly_average('EUR', 2010, 42)
+
+    assert 'not found' in str(e.value)
+

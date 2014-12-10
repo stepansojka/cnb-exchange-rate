@@ -46,7 +46,7 @@ def monthly_average(currency, year, month):
     try:
         return rate_table[year][month - 1]
     except (ValueError, KeyError, IndexError):
-        raise ValueError('average rate for %s, year %s, month %s not found' % (currency, year, quarter))
+        raise ValueError('average rate for %s, year %s, month %s not found' % (currency, year, month))
 
 
 if __name__ == '__main__':
