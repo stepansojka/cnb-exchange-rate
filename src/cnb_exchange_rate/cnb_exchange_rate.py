@@ -8,6 +8,7 @@ host = 'www.cnb.cz'
 
 URL = 'http://%s/cs/financni_trhy/devizovy_trh/kurzy_devizoveho_trhu/prumerne_mena.txt?mena=%s'
 MONTHLY_AVERAGE_TABLE_IDX = 0
+CUMULATIVE_MONTHLY_AVERAGE_TABLE_IDX = 1
 QUARTERLY_AVERAGE_TABLE_IDX = 2
 FIELD_DELIMITER = '|'
 TABLE_DELIMITER = '\n\n'
@@ -43,13 +44,6 @@ def average_rates(currency, table_index):
 
     return rate_table
 
-def quarterly_average(currency, year, quarter):
-    rate_table = average_rates(currency, QUARTERLY_AVERAGE_TABLE_IDX)
-
-    try:
-        return rate_table[year][quarter - 1]
-    except (ValueError, KeyError, IndexError):
-        raise ValueError('average rate for %s, year %s, quarter %s not found' % (currency, year, quarter))
 
 def monthly_average(currency, year, month):
     rate_table = average_rates(currency, MONTHLY_AVERAGE_TABLE_IDX)
@@ -58,6 +52,24 @@ def monthly_average(currency, year, month):
         return rate_table[year][month - 1]
     except (ValueError, KeyError, IndexError):
         raise ValueError('average rate for %s, year %s, month %s not found' % (currency, year, month))
+
+
+def cumulative_monthly_average(currency, year, month):
+    rate_table = average_rates(currency, CUMULATIVE_MONTHLY_AVERAGE_TABLE_IDX)
+
+    try:
+        return rate_table[year][month - 1]
+    except (ValueError, KeyError, IndexError):
+        raise ValueError('cumulative average rate for %s, year %s, month %s not found' % (currency, year, month))
+
+
+def quarterly_average(currency, year, quarter):
+    rate_table = average_rates(currency, QUARTERLY_AVERAGE_TABLE_IDX)
+
+    try:
+        return rate_table[year][quarter - 1]
+    except (ValueError, KeyError, IndexError):
+        raise ValueError('average rate for %s, year %s, quarter %s not found' % (currency, year, quarter))
 
 if __name__ == '__main__':
     currency = sys.argv[1]
