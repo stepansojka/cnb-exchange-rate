@@ -24,7 +24,7 @@ def download_average_rate_table(currency, table_index):
     if len(raw) < 16:
         raise ValueError('currency %s not found' % currency)
     
-    tables = str(raw, encoding=TABLE_ENCODING).split(TABLE_DELIMITER)
+    tables = raw.decode('ascii', 'ignore').split(TABLE_DELIMITER)
     return tables[table_index]
 
 def average_rates(currency, table_index):

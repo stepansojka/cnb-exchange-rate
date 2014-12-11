@@ -3,8 +3,10 @@ import pytest
 import cnb_exchange_rate as cnb
 
 import time
+import codecs
 import threading
-from http.server import BaseHTTPRequestHandler, HTTPServer
+from six.moves.BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
+
 
 class FakeCNBHandler(BaseHTTPRequestHandler):
 
@@ -12,10 +14,10 @@ class FakeCNBHandler(BaseHTTPRequestHandler):
         try:
             p = '/home/stepan/cnb-exchange-rate/tests/data/' + self.path
             print(p)
-            f = open(p)
+            f = codecs.open(p, encoding='UTF-8')
             self.send_response(200)
             self.end_headers()
-            self.wfile.write(f.read().encode('utf-8'))
+            self.wfile.write(f.read().encode('UTF-8'))
             f.close()
             return
         except IOError:
