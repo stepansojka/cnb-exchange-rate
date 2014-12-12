@@ -1,6 +1,7 @@
 
 from six.moves.urllib.request import urlopen
 
+import datetime
 import csv
 import sys
 
@@ -35,39 +36,35 @@ def parse_table(table):
             
     return d
 
-
-def download_average_rate_table(currency, table_index):
+def averages(currency, table_index):
     url = URL % (host, currency)
     tables = download(url).split(TABLE_DELIMITER)
-    return tables[table_index]
+    return parse_table(tables[table_index])
 
-def average_rates_table(currency, table_index):
-    raw_table = download_average_rate_table(currency, table_index)
-    return parse_table(raw_table)
-
-def rate_string_to_float(s):
+def rate(t, key, index):
+    s = t[str(key)][index]
     return float(s.replace(',','.'))
 
 def monthly_average(currency, year, month):
     try:
-        rate_table = average_rates_table(currency, MONTHLY_AVERAGE_TABLE_IDX)
-        return rate_string_to_float(rate_table[str(year)][month - 1])
+        t = averages(currency, MONTHLY_AVERAGE_TABLE_IDX)
+        return rate(t, year, month - 1)
     except (ValueError, KeyError, IndexError):
         raise ValueError('average rate for %s, year %s, month %s not found' % (currency, year, month))
 
 
 def cumulative_monthly_average(currency, year, month):
     try:
-        rate_table = average_rates_table(currency, CUMULATIVE_MONTHLY_AVERAGE_TABLE_IDX)
-        return rate_string_to_float(rate_table[str(year)][month - 1])
+        t = averages(currency, CUMULATIVE_MONTHLY_AVERAGE_TABLE_IDX)
+        return rate(t, year, month - 1)
     except (ValueError, KeyError, IndexError):
         raise ValueError('cumulative average rate for %s, year %s, month %s not found' % (currency, year, month))
 
 
 def quarterly_average(currency, year, quarter):
     try:
-        rate_table = average_rates_table(currency, QUARTERLY_AVERAGE_TABLE_IDX)
-        return rate_string_to_float(rate_table[str(year)][quarter - 1]) 
+        t = averages(currency, QUARTERLY_AVERAGE_TABLE_IDX)
+        return rate(t, year, quarter - 1)
     except (ValueError, KeyError, IndexError):
         raise ValueError('average rate for %s, year %s, quarter %s not found' % (currency, year, quarter))
 
@@ -75,10 +72,8 @@ def daily_rate(currency, date):
     date_str = date.strftime('%d.%m.%Y')
     url = DAILY_URL % (host, currency, date_str, date_str)
     
-    table = parse_table(download(url))
-
-    rate_str = table[date_str][0]
-    return rate_string_to_float(rate_str)
+    t = parse_table(download(url))
+    return rate(t, date_str, 0)
     
 
 if __name__ == '__main__':
