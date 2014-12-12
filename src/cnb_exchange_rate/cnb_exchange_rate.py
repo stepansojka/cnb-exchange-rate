@@ -25,11 +25,8 @@ def parse_table(table):
 
     for row in csv_reader:
         if len(row) > 1:
-            try:
-                d[row[0]] = row[1:]
-            except ValueError:
-                pass
-
+            d[row[0]] = row[1:]
+            
     return d
 
 
