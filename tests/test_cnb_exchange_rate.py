@@ -6,6 +6,7 @@ import time
 import datetime
 import codecs
 import threading
+import os
 from six.moves.BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
 
 
@@ -13,7 +14,8 @@ class FakeCNBHandler(BaseHTTPRequestHandler):
 
     def do_GET(self):
         try:
-            p = '/home/stepan/cnb-exchange-rate/tests/data/' + self.path
+            this_dir = os.path.dirname(os.path.abspath(__file__))
+            p = os.path.join(this_dir, 'data') + self.path
             print(p)
             f = codecs.open(p, encoding='UTF-8')
             self.send_response(200)
