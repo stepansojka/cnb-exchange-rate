@@ -19,6 +19,20 @@ def set_host(h):
     global host
     host = h
 
+def parse_table(table):
+    csv_reader = csv.reader(table.split('\n'), delimiter=FIELD_DELIMITER)
+    d = {}
+
+    for row in csv_reader:
+        if len(row) > 1:
+            try:
+                d[row[0]] = row[1:]
+            except ValueError:
+                pass
+
+    return d
+
+
 def download_average_rate_table(currency, table_index):
     stream = urlopen(URL % (host, currency))
     raw = stream.read()
@@ -31,17 +45,7 @@ def download_average_rate_table(currency, table_index):
 
 def average_rates(currency, table_index):
     raw_table = download_average_rate_table(currency, table_index)
-    csv_reader = csv.reader(raw_table.split('\n'), delimiter=FIELD_DELIMITER)
-    rate_table = {}
-
-    for row in csv_reader:
-        if len(row) > 1:
-            try:
-                rate_table[row[0]] = row[1:]
-            except ValueError:
-                pass
-
-    return rate_table
+    return parse_table(raw_table)
 
 def rate_string_to_float(s):
     return float(s.replace(',','.'))
@@ -77,20 +81,9 @@ def daily_rate(currency, date):
     stream = urlopen(DAILY_URL % (host, currency, date_str, date_str))
     raw = stream.read()
     
-    table = raw.decode('ascii', 'ignore')
+    table = parse_table(raw.decode('ascii', 'ignore'))
 
-    print(raw)
-    csv_reader = csv.reader(table.split('\n'), delimiter=FIELD_DELIMITER)
-    rate_table = {}
-
-    for row in csv_reader:
-        if len(row) > 1:
-            try:
-                rate_table[row[0]] = row[1:]
-            except ValueError:
-                pass
-
-    rate_str = rate_table[date_str][0]
+    rate_str = table[date_str][0]
     return rate_string_to_float(rate_str)
     
 
