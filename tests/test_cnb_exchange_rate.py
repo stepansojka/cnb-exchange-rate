@@ -128,3 +128,6 @@ def test_quarterly_with_invalid_currency(fake_server):
 
 def test_SGD_at_02012014(fake_server):
     assert 15.859 == cnb.daily_rate('SGD', datetime.date(2014, 1, 2))
+
+def test_EUR_at_22112011(fake_server):
+    assert 25.485 == cnb.daily_rate('EUR', datetime.date(2011, 11, 22))

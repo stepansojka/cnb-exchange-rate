@@ -7,7 +7,7 @@ import sys
 host = 'www.cnb.cz'
 
 URL = 'http://%s/cs/financni_trhy/devizovy_trh/kurzy_devizoveho_trhu/prumerne_mena.txt?mena=%s'
-DAILY_URL = 'http://www.cnb.cz/cs/financni_trhy/devizovy_trh/kurzy_devizoveho_trhu/vybrane.txt?mena=SGD&od=02.01.2014&do=02.01.2014'
+DAILY_URL = 'http://%s/cs/financni_trhy/devizovy_trh/kurzy_devizoveho_trhu/vybrane.txt?mena=%s&od=%s&do=%s'
 MONTHLY_AVERAGE_TABLE_IDX = 0
 CUMULATIVE_MONTHLY_AVERAGE_TABLE_IDX = 1
 QUARTERLY_AVERAGE_TABLE_IDX = 2
@@ -74,11 +74,12 @@ def quarterly_average(currency, year, quarter):
 
 def daily_rate(currency, date):
     date_str = date.strftime('%d.%m.%Y')
-    stream = urlopen(DAILY_URL)
+    stream = urlopen(DAILY_URL % (host, currency, date_str, date_str))
     raw = stream.read()
     
     table = raw.decode('ascii', 'ignore')
 
+    print(raw)
     csv_reader = csv.reader(table.split('\n'), delimiter=FIELD_DELIMITER)
     rate_table = {}
 
