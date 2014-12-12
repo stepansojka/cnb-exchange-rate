@@ -3,6 +3,7 @@ import pytest
 import cnb_exchange_rate as cnb
 
 import time
+import datetime
 import codecs
 import threading
 from six.moves.BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
@@ -124,3 +125,6 @@ def test_quarterly_with_invalid_currency(fake_server):
         cnb.quarterly_average('WTF', 2009, 2)
 
     assert 'not found' in str(e.value)
+
+def test_SGD_at_02012014(fake_server):
+    assert 15.859 == cnb.daily_rate('SGD', datetime.date(2014, 1, 2))
