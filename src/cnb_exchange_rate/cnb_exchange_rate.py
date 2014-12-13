@@ -36,8 +36,7 @@ def parse_table(table):
             
     return d
 
-def averages(currency, table_index):
-    url = URL % (host, currency)
+def download_table(url, table_index):
     tables = download(url).split(TABLE_DELIMITER)
     return parse_table(tables[table_index])
 
@@ -45,26 +44,26 @@ def rate(t, key, index):
     s = t[str(key)][index]
     return float(s.replace(',','.'))
 
+def average(currency, table_idx, year, value_idx):
+    url = URL % (host, currency)
+    t = download_table(url, table_idx)
+    return rate(t, year, value_idx - 1)
+
 def monthly_average(currency, year, month):
     try:
-        t = averages(currency, MONTHLY_AVERAGE_TABLE_IDX)
-        return rate(t, year, month - 1)
+        return average(currency, MONTHLY_AVERAGE_TABLE_IDX, year, month)
     except (ValueError, KeyError, IndexError):
         raise ValueError('average rate for %s, year %s, month %s not found' % (currency, year, month))
 
-
 def cumulative_monthly_average(currency, year, month):
     try:
-        t = averages(currency, CUMULATIVE_MONTHLY_AVERAGE_TABLE_IDX)
-        return rate(t, year, month - 1)
+        return average(currency, CUMULATIVE_MONTHLY_AVERAGE_TABLE_IDX, year, month)
     except (ValueError, KeyError, IndexError):
         raise ValueError('cumulative average rate for %s, year %s, month %s not found' % (currency, year, month))
 
-
 def quarterly_average(currency, year, quarter):
     try:
-        t = averages(currency, QUARTERLY_AVERAGE_TABLE_IDX)
-        return rate(t, year, quarter - 1)
+        return average(currency, QUARTERLY_AVERAGE_TABLE_IDX, year, quarter)
     except (ValueError, KeyError, IndexError):
         raise ValueError('average rate for %s, year %s, quarter %s not found' % (currency, year, quarter))
 
@@ -72,11 +71,10 @@ def daily_rate(currency, date):
     try:
         date_str = date.strftime('%d.%m.%Y')
         url = DAILY_URL % (host, currency, date_str, date_str)
-        t = parse_table(download(url))
+        t = download_table(url, 0)
         return rate(t, date_str, 0)
     except (ValueError, KeyError, IndexError):
         raise ValueError('rate for %s at %s not found' % (currency, date))
-    
 
 if __name__ == '__main__':
     currency = sys.argv[1]
