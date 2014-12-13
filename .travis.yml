@@ -1,5 +1,7 @@
 :::yaml
-language: python
+language:
+- python
+
 env:
 - TOXENV=py27
 - TOXENV=py33
