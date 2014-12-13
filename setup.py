@@ -1,26 +1,31 @@
 import glob
+import os
 from distutils.core import setup
 
-setup(
-    name = "cnb-exchange-rate",
-    packages = ["cnb_exchange_rate"],
-    version = "0.0.0",
-    description = "Czech National Bank Exchange Rate Downloader",
-    author = "Stepan Sojka",
-    author_email = "stepansojka@countermail.com",
-    url = "http://github.com/stepansojka/cnb-exchange-rate",
-    keywords = ["www"],
-    package_dir={"": "src"},
-    install_requires = ['six'],
-    py_modules=[splitext(basename(i))[0] for i in glob.glob("src/*.py")],
-    classifiers = [
-        "Programming Language :: Python",
-        "Programming Language :: Python :: 3",
-        ],
-    long_description = """\
-Czech National Bank Exchange Rate Downloader
--------------------------------------
+def read(fname):
+    return open(os.path.join(os.path.dirname(__file__), fname)).read()
 
-TBD
-"""
+setup(
+    name = 'cnb-exchange-rate',
+    packages = ['cnb_exchange_rate'],
+    version = '0.0.1',
+    description = 'Czech National Bank Exchange Rate Downloader',
+    long_description = read('README.md'),
+    license = 'MIT',
+    author = 'Stepan Sojka',
+    author_email = 'stepansojka@countermail.com',
+    url = 'http://github.com/stepansojka/cnb-exchange-rate',
+    keywords = ['CNB currency exchange'],
+    package_dir={'': 'src'},
+    install_requires = ['six'],
+    py_modules=[splitext(basename(i))[0] for i in glob.glob('src/*.py')],
+    classifiers = [
+        'Topic :: Office/Business :: Financial',
+        'Topic :: Utilities',
+        'Development Status :: 2 - Pre-Alpha',
+        'License :: OSI Approved :: MIT License',
+        'Programming Language :: Python',
+        'Programming Language :: Python :: 2',
+        'Programming Language :: Python :: 3',
+        ]
 )
