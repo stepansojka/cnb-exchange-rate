@@ -1,13 +1,11 @@
-:::yaml
-language:
-- python
+language: python
 
 env:
-- TOXENV=py27
-- TOXENV=py33
+- TOX_ENV=py27
+- TOX_ENV=py33
 
 install:
 - pip install tox
 
 script:
-- tox
+- tox -e $TOX_ENV
