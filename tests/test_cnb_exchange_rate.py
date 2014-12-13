@@ -1,22 +1,6 @@
 import cnb_exchange_rate as cnb
 import pytest
-import fake_cnb_server
 import datetime
-
-
-def pytest_addoption(parser):
-    parser.addoption('--fake', action='store_true', default=False, help='use fake CNB server')
-
-@pytest.fixture(scope='module')
-def fake_server(request):
-    if request.config.getoption('--fake', default=True):
-        cnb.set_host('127.0.0.1:8080')
-        server = fake_cnb_server.start()
-
-        def fin():
-            server.shutdown()
-
-        request.addfinalizer(fin)
 
 def test_monthly_with_existing_SGD(fake_server):
     assert 13.114 == cnb.monthly_average('SGD', 2010, 1)
