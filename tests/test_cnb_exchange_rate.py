@@ -128,8 +128,20 @@ def test_quarterly_with_invalid_currency(fake_server):
 
     assert 'not found' in str(e.value)
 
-def test_SGD_at_02012014(fake_server):
+def test_daily_SGD_at_02012014(fake_server):
     assert 15.859 == cnb.daily_rate('SGD', datetime.date(2014, 1, 2))
 
-def test_EUR_at_22112011(fake_server):
+def test_daily_EUR_at_22112011(fake_server):
     assert 25.485 == cnb.daily_rate('EUR', datetime.date(2011, 11, 22))
+
+def test_daily_with_year_with_no_data(fake_server):
+    with pytest.raises(ValueError) as e:
+        cnb.daily_rate('SGD', datetime.datetime(2001, 1, 1))
+
+    assert 'not found' in str(e.value)
+
+def test_daily_with_invalid_currency(fake_server):
+    with pytest.raises(ValueError) as e:
+        cnb.daily_rate('XYZ', datetime.datetime(2011, 1, 1))
+
+    assert 'not found' in str(e.value)

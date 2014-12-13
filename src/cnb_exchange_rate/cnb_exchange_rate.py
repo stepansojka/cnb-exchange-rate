@@ -69,11 +69,13 @@ def quarterly_average(currency, year, quarter):
         raise ValueError('average rate for %s, year %s, quarter %s not found' % (currency, year, quarter))
 
 def daily_rate(currency, date):
-    date_str = date.strftime('%d.%m.%Y')
-    url = DAILY_URL % (host, currency, date_str, date_str)
-    
-    t = parse_table(download(url))
-    return rate(t, date_str, 0)
+    try:
+        date_str = date.strftime('%d.%m.%Y')
+        url = DAILY_URL % (host, currency, date_str, date_str)
+        t = parse_table(download(url))
+        return rate(t, date_str, 0)
+    except (ValueError, KeyError, IndexError):
+        raise ValueError('rate for %s at %s not found' % (currency, date))
     
 
 if __name__ == '__main__':
