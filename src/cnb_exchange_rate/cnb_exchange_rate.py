@@ -76,10 +76,3 @@ def daily_rate(currency, date):
     except (ValueError, KeyError, IndexError):
         raise ValueError('rate for %s at %s not found' % (currency, date))
 
-if __name__ == '__main__':
-    currency = sys.argv[1]
-    year = sys.argv[2]
-    quarter = int(sys.argv[3])
-
-    print(quarterly_average(currency, year, quarter))
-

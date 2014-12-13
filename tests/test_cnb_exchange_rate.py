@@ -9,7 +9,7 @@ def pytest_addoption(parser):
 
 @pytest.fixture(scope='module')
 def fake_server(request):
-    if request.config.getoption('--fake', default=False):
+    if request.config.getoption('--fake', default=True):
         cnb.set_host('127.0.0.1:8080')
         server = fake_cnb_server.start()
 
