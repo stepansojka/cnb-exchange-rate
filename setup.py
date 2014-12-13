@@ -11,6 +11,7 @@ setup(
     url = "http://github.com/stepansojka/cnb-exchange-rate",
     keywords = ["www"],
     package_dir={"": "src"},
+    install_requires = ['six'],
     py_modules=[splitext(basename(i))[0] for i in glob.glob("src/*.py")],
     classifiers = [
         "Programming Language :: Python",
