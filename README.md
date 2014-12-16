@@ -1,6 +1,8 @@
 CNB Exchange Rate
 ================
 [![Build Status](https://travis-ci.org/stepansojka/cnb-exchange-rate.svg)](https://travis-ci.org/stepansojka/cnb-exchange-rate)
+[![Supported Python Versions](https://pypip.in/py_versions/cnb-exchange-rate/badge.svg)](https://pypi.python.org/pypi/cnb-exchange-rate/)
+[![Latest Version](https://pypip.in/version/cnb-exchange-rate/badge.svg)](https://pypi.python.org/pypi/cnb-exchange-rate/)
 
 Python lib that downloads exchange rates from the Czech National Bank. 
 
