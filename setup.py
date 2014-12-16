@@ -10,7 +10,7 @@ setup(
     packages = ['cnb_exchange_rate'],
     version = '0.0.1',
     description = 'Czech National Bank Exchange Rate Downloader',
-#    long_description = read('README.md'),
+    long_description = 'Python library for downloading exchange rates from the Czech National Bank.',
     license = 'MIT',
     author = 'Stepan Sojka',
     author_email = 'stepansojka@countermail.com',
