@@ -1,4 +1,4 @@
-cnb-exchange-rate
+CNB Exchange Rate
 ================
 [![Build Status](https://travis-ci.org/stepansojka/cnb-exchange-rate.svg)](https://travis-ci.org/stepansojka/cnb-exchange-rate)
 
@@ -14,9 +14,7 @@ or if you want to obtain a copy from the Pypi repository:
 
     pip install cnb-exchange-rate
 
-Both commands will install the required package dependencies.
-
-A distribution package can be obtained for manual installation at:
+Both commands will install the required package dependencies. A distribution package can be obtained for manual installation at:
 
     http://pypi.python.org/pypi/cnb-exhchange-rate
 
@@ -32,9 +30,9 @@ Then run:
 
 ### SOURCE
 
-GitPython's git repo is available on GitHub, which can be browsed at [github](https://github.com/stepansojka/cnb-exhchange-rate) and cloned like that:
+The code is available on GitHub, which can be browsed at [github](https://github.com/stepansojka/cnb-exhchange-rate) and cloned like:
 
-    git clone git://github.com/gitpython-developers/GitPython.git git-python
+    git clone git://github.com/stepansojka/cnb-exchange-rate
 
 ### LICENSE
 
