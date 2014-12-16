@@ -18,7 +18,7 @@ or if you want to obtain a copy from the Pypi repository:
 
 Both commands will install the required package dependencies. A distribution package can be obtained for manual installation at:
 
-    http://pypi.python.org/pypi/cnb-exhchange-rate
+    http://pypi.python.org/pypi/cnb-exchange-rate
 
 ### RUNNING TESTS
 
