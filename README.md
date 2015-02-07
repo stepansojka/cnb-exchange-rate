@@ -17,10 +17,10 @@ or if you want to obtain a copy from the Pypi repository:
 
     pip install cnb-exchange-rate
 
-Both commands will install the required package dependencies. A distribution package can be obtained for manual installation at:
+Both commands will install the required package dependencies. The code is available on GitHub, which can be browsed at [github](https://github.com/stepansojka/cnb-exhchange-rate) or cloned by running
 
-    http://pypi.python.org/pypi/cnb-exchange-rate
-
+    git clone git://github.com/stepansojka/cnb-exchange-rate
+    
 ### Usage
 To import import the library:
 
@@ -37,12 +37,6 @@ The rates can be obtained be obtained using:
     
     >>> cnb_exchange_rate.quarterly_average('EUR', 2014, 4)
     27.624
-
-### Getting the Source Code
-
-The code is available on GitHub, which can be browsed at [github](https://github.com/stepansojka/cnb-exhchange-rate) and cloned like:
-
-    git clone git://github.com/stepansojka/cnb-exchange-rate
 
 ### Running Tests
 
