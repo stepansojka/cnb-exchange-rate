@@ -49,19 +49,19 @@ def average(currency, table_idx, year, value_idx):
     t = download_table(url, table_idx)
     return rate(t, year, value_idx - 1)
 
-def monthly_average(currency, year, month):
+def monthly_rate(currency, year, month):
     try:
         return average(currency, MONTHLY_AVERAGE_TABLE_IDX, year, month)
     except (ValueError, KeyError, IndexError):
         raise ValueError('average rate for %s, year %s, month %s not found' % (currency, year, month))
 
-def cumulative_monthly_average(currency, year, month):
+def cumulative_monthly_rate(currency, year, month):
     try:
         return average(currency, CUMULATIVE_MONTHLY_AVERAGE_TABLE_IDX, year, month)
     except (ValueError, KeyError, IndexError):
         raise ValueError('cumulative average rate for %s, year %s, month %s not found' % (currency, year, month))
 
-def quarterly_average(currency, year, quarter):
+def quarterly_rate(currency, year, quarter):
     try:
         return average(currency, QUARTERLY_AVERAGE_TABLE_IDX, year, quarter)
     except (ValueError, KeyError, IndexError):
