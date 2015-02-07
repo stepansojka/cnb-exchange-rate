@@ -52,6 +52,6 @@ Then run:
 
     tox
     
-To run the tests with fake CNB server (faster executio), run:
+To run the tests with fake CNB server (faster execution), run:
     
     tox -- --fake
