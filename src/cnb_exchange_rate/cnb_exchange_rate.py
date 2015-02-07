@@ -55,7 +55,7 @@ def monthly_rate(currency, year, month):
     except (ValueError, KeyError, IndexError):
         raise ValueError('average rate for %s, year %s, month %s not found' % (currency, year, month))
 
-def cumulative_monthly_rate(currency, year, month):
+def monthly_cumulative_rate(currency, year, month):
     try:
         return average(currency, CUMULATIVE_MONTHLY_AVERAGE_TABLE_IDX, year, month)
     except (ValueError, KeyError, IndexError):

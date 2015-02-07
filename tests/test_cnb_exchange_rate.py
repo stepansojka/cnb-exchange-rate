@@ -32,33 +32,33 @@ def test_monthly_with_invalid_month(fake_server):
 
     assert 'not found' in str(e.value)
 
-def test_cumulative_monthly_with_existing_SGD(fake_server):
-    assert 13.114 == cnb.cumulative_monthly_rate('SGD', 2010, 1)
+def test_monthly_cumulative_with_existing_SGD(fake_server):
+    assert 13.114 == cnb.monthly_cumulative_rate('SGD', 2010, 1)
 
-def test_cumulative_monthly_with_existing_AUD(fake_server):
-    assert 16.988 == cnb.cumulative_monthly_rate('AUD', 2007, 12)
+def test_monthly_cumulative_with_existing_AUD(fake_server):
+    assert 16.988 == cnb.monthly_cumulative_rate('AUD', 2007, 12)
 
-def test_cumulative_monthly_with_invalid_currency(fake_server):
+def test_monthly_cumulative_with_invalid_currency(fake_server):
     with pytest.raises(ValueError) as e:
-        cnb.cumulative_monthly_rate('WTF', 2009, 2)
+        cnb.monthly_cumulative_rate('WTF', 2009, 2)
 
     assert 'not found' in str(e.value)
 
 def test_cumulative_montly_with_year_with_no_data(fake_server):
     with pytest.raises(ValueError) as e:
-        cnb.cumulative_monthly_rate('EUR', 1991, 1)
+        cnb.monthly_cumulative_rate('EUR', 1991, 1)
 
     assert 'not found' in str(e.value)
 
-def test_cumulative_monthly_with_unexpected_year(fake_server):
+def test_monthly_cumulative_with_unexpected_year(fake_server):
     with pytest.raises(ValueError) as e:
-        cnb.cumulative_monthly_rate('EUR', 1492, 1)
+        cnb.monthly_cumulative_rate('EUR', 1492, 1)
 
     assert 'not found' in str(e.value)
 
-def test_cumulative_monthly_with_invalid_month(fake_server):
+def test_monthly_cumulative_with_invalid_month(fake_server):
     with pytest.raises(ValueError) as e:
-        cnb.cumulative_monthly_rate('EUR', 2010, 42)
+        cnb.monthly_cumulative_rate('EUR', 2010, 42)
 
     assert 'not found' in str(e.value)
 
