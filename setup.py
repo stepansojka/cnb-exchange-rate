@@ -8,7 +8,7 @@ def read(fname):
 setup(
     name = 'cnb-exchange-rate',
     packages = ['cnb_exchange_rate'],
-    version = '0.0.1',
+    version = '0.1.0',
     description = 'Czech National Bank Exchange Rate Downloader',
     long_description = 'Python library for downloading exchange rates from the Czech National Bank.',
     license = 'MIT',
@@ -22,7 +22,7 @@ setup(
     classifiers = [
         'Topic :: Office/Business :: Financial',
         'Topic :: Utilities',
-        'Development Status :: 2 - Pre-Alpha',
+        'Development Status :: 4 - Beta',
         'License :: OSI Approved :: MIT License',
         'Operating System :: OS Independent',
         'Programming Language :: Python',
