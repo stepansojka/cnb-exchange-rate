@@ -51,3 +51,7 @@ The easiest way to run test is by using [tox](https://pypi.python.org/pypi/tox),
 Then run:
 
     tox
+    
+To run the tests with fake CNB server (faster executio), run:
+    
+    tox -- --fake
