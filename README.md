@@ -37,6 +37,10 @@ The rates can be obtained be obtained using:
     
     >>> cnb_exchange_rate.quarterly_rate('EUR', 2014, 4)
     27.624
+    
+    >>> cnb_exchange_rate.monthly_cumulative_rate('EUR', 2014, 6)
+    27.444
+
 
 ### Running Tests
 
