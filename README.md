@@ -5,8 +5,9 @@ CNB Exchange Rate
 [![Latest Version](https://pypip.in/version/cnb-exchange-rate/badge.svg)](https://pypi.python.org/pypi/cnb-exchange-rate/)
 
 Python lib that downloads exchange rates from the Czech National Bank. 
+Released under MIT License (see the LICENSE file).
 
-### INSTALL
+### Installation
 
 If you have downloaded the source code:
 
@@ -20,24 +21,35 @@ Both commands will install the required package dependencies. A distribution pac
 
     http://pypi.python.org/pypi/cnb-exchange-rate
 
-### RUNNING TESTS
+### Usage
+To import import the library:
 
-The easiest way to run test is by using [tox](https://pypi.python.org/pypi/tox) a wrapper around virtualenv. It will take care of setting up environnements with the proper dependencies installed and execute test commands. To install it simply:
+    >>> import cnb_exchange_rate
+    
+The rates can be obtained be obtained using:
+
+    >>> import datetime
+    >>> cnb_exchange_rate.daily_rate('EUR', datetime.date(2015, 1, 20))
+    27.845
+
+    >>> cnb_exchange_rate.monthly_average('EUR', 2015, 1)
+    27.895
+    
+    >>> cnb_exchange_rate.quarterly_average('EUR', 2014, 4)
+    27.624
+
+### Getting the Source Code
+
+The code is available on GitHub, which can be browsed at [github](https://github.com/stepansojka/cnb-exhchange-rate) and cloned like:
+
+    git clone git://github.com/stepansojka/cnb-exchange-rate
+
+### Running Tests
+
+The easiest way to run test is by using [tox](https://pypi.python.org/pypi/tox), a wrapper around virtualenv. It will take care of setting up environnements with the proper dependencies installed and execute test commands. To install it simply:
 
     pip install tox
 
 Then run:
 
     tox
-
-### SOURCE
-
-The code is available on GitHub, which can be browsed at [github](https://github.com/stepansojka/cnb-exhchange-rate) and cloned like:
-
-    git clone git://github.com/stepansojka/cnb-exchange-rate
-
-### LICENSE
-
-MIT License.  See the LICENSE file.
-
-
