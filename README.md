@@ -32,10 +32,10 @@ The rates can be obtained be obtained using:
     >>> cnb_exchange_rate.daily_rate('EUR', datetime.date(2015, 1, 20))
     27.845
 
-    >>> cnb_exchange_rate.monthly_average('EUR', 2015, 1)
+    >>> cnb_exchange_rate.monthly_rate('EUR', 2015, 1)
     27.895
     
-    >>> cnb_exchange_rate.quarterly_average('EUR', 2014, 4)
+    >>> cnb_exchange_rate.quarterly_rate('EUR', 2014, 4)
     27.624
 
 ### Running Tests
